@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="a simplest PWA demo">
+	<meta name="author" content="end3r">
+	<meta name="theme-color" content="#B12A34">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/demo.css">
+  <title>PWA demo</title>
+</head>
+<script>
+
+  window.addEventListener('load', () => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  });
+
+  if (Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+
+  if (!navigator.onLine) {
+    new Notification('warnig', {body: '没有网络'});
+  }
+  window.addEventListener('online', () => {
+    console.log('online');
+    new Notification('warnig', {body: '连上网了'});
+  });
+
+
+</script>
+<body>
+  <header>
+    <h1>app header</h1>
+  </header>
+  <main>
+    <h1>main content</h1>
+    <p>the main content of app</p>
+    <section id="content">
+      
+    </section>
+  </main>
+  <footer>
+    <p>footer of app</p>
+  </footer>
+</body>
+</html>
